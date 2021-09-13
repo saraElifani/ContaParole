@@ -21,7 +21,8 @@ public class Main {
     public static String[] splitFraseInParole(String input) {
         //per eliminare punteggiatura
         String eliminaPunteggiatura = input.replaceAll("\\W", " ");
-        String[] arrayParole = eliminaPunteggiatura.split(" ");
+        String[] arrayParole = eliminaPunteggiatura.split("\\s+");
+        System.out.println(Arrays.toString(arrayParole));
         return arrayParole;
     }
 
@@ -40,7 +41,7 @@ public class Main {
         //ordinamento mappa per chiave in ordine alfabetico
         contaParole.keySet().stream().sorted().forEach(key -> {
                     Integer value = contaParole.get(key);
-                    System.out.println(" - <" + key + "> ======> e' presente: " + value);
+                    System.out.println( key + " ======> e' presente: " + value);
                 }
         );
     }
