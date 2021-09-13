@@ -12,7 +12,10 @@ public class Main {
         for (int i=0; i<fraseInIngresso.length; i++){
             add(contaParole,fraseInIngresso[i]);
         }
+        System.out.println("\n____________STAMPA MAPPA ORDINATA PER CHIAVE_________________________\n");
         stampaMappa();
+        System.out.println("\n____________STAMPA MAPPA ORDINATA PER VALORE_________________________\n");
+        stampaRisultatiOrdinatiPerValore();
     }
 
     public static String[] splitFraseInParole(String input) {
@@ -40,5 +43,12 @@ public class Main {
                     System.out.println(" - <" + key + "> ======> e' presente: " + value);
                 }
         );
+    }
+
+    //stampa risultati per valore decrescente
+    public static void stampaRisultatiOrdinatiPerValore(){
+        List<Map.Entry<String, Integer>> list = new ArrayList<>(contaParole.entrySet());
+        list.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+        list.forEach(parola -> System.out.println(parola));
     }
 }
