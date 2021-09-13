@@ -1,7 +1,6 @@
 import javax.swing.*;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static Map<String,Integer> contaParole = new HashMap<>();
@@ -17,7 +16,9 @@ public class Main {
     }
 
     public static String[] splitFraseInParole(String input) {
-        String[] arrayParole = input.split(" ");
+        //per eliminare punteggiatura
+        String eliminaPunteggiatura = input.replaceAll("\\W", " ");
+        String[] arrayParole = eliminaPunteggiatura.split(" ");
         return arrayParole;
     }
 
@@ -33,9 +34,11 @@ public class Main {
 
     //stampa risultati
     public static void stampaMappa(){
-        for (String parola : contaParole.keySet()) {
-            System.out.println(" - <" + parola + "> ======> e' presente: " + contaParole.get(parola) + " volte.");
-        }
+        //ordinamento mappa per chiave in ordine alfabetico
+        contaParole.keySet().stream().sorted().forEach(key -> {
+                    Integer value = contaParole.get(key);
+                    System.out.println(" - <" + key + "> ======> e' presente: " + value);
+                }
+        );
     }
-
 }
